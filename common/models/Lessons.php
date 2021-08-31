@@ -1,8 +1,10 @@
 <?php
 
 namespace common\models;
+
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 use Yii;
 
 /**
@@ -39,7 +41,9 @@ class Lessons extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
                 // if you're using datetime instead of UNIX timestamp:
-                    'value' => function() { return date('Y-m-d H:i:s');}
+                'value' => function () {
+                    return date('Y-m-d H:i:s');
+                }
             ],
         ];
     }
@@ -50,8 +54,8 @@ class Lessons extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'start_time', 'weekday' ,'end_time', 'teacher_id', 'class_id', 'group_id'], 'required'],
-            [[ 'teacher_id', 'class_id', 'group_id'], 'integer'],
+            [['name', 'start_time', 'weekday', 'end_time', 'teacher_id', 'class_id', 'group_id'], 'required'],
+            [['teacher_id', 'class_id', 'group_id'], 'integer'],
             [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
             [['name', 'weekday'], 'string', 'max' => 255],
         ];
@@ -83,5 +87,12 @@ class Lessons extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\LessonsQuery(get_called_class());
+    }
+
+    public static function getTeachers()
+    {
+        $teachers = Teachers::find()->all();
+
+        return ArrayHelper::map($teachers, 'id', 'surname');
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\controllers;
 
 use Yii;
@@ -20,7 +21,8 @@ class SiteController extends BaseController
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'rules' => [
+                'rules' => 
+                [
                     [
                         'actions' => ['login', 'error'],
                         'allow' => true,

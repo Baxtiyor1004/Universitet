@@ -67,9 +67,9 @@ class LessonsController extends BaseController
         $model = new Lessons();
 
         if ($model->load(Yii::$app->request->post()) &&  $model->save()) {
-           
-        
-             
+
+
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

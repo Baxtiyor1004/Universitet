@@ -66,8 +66,8 @@ class RoleController extends BaseController
     {
         $model = new Role();
 
-        if ($model->load(Yii::$app->request->post()) ) {
-            $model->actions=implode(',',($model->actions));
+        if ($model->load(Yii::$app->request->post())) {
+            $model->actions = implode(',', ($model->actions));
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -88,8 +88,8 @@ class RoleController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) ) {
-            $model->actions=implode(',',($model->actions));
+        if ($model->load(Yii::$app->request->post())) {
+            $model->actions = implode(',', ($model->actions));
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }

@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -58,16 +59,16 @@ class LoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        
+
         return false;
     }
     public function backlogin()
     {
         $user = $this->getUser();
-        if ($this->validate() && in_array($user['role_id'],[1,2,3] )) {
+        if ($this->validate() && in_array($user['role_id'], [1, 2, 3])) {
             return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        
+
         return false;
     }
 
